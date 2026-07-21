@@ -1,0 +1,54 @@
+name: Generate daily problem folders
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+
+  # Actions 화면에서 수동 실행 가능
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# 같은 브랜치에서 중복 실행되면 이전 실행 취소
+concurrency:
+  group: generate-daily-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    # GitHub Actions가 만든 커밋에서는 실행하지 않음
+    if: github.actor != 'github-actions[bot]'
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate daily problem folders
+        run: python .github/scripts/generate_daily.py
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -- problem_solve
+
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+
+          git commit -m "chore: generate daily problem folders [skip ci]"
+          git push origin "HEAD:${{ github.ref_name }}"
