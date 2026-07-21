@@ -22,7 +22,7 @@
 ## 👩‍👦‍👦 **스터디 멤버**
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/mojunsul"><img src="https://avatars.githubusercontent.com/oneul0" width="150px;" alt="oneul0"></a></td>
+    <td align="center"><a href="https://github.com/mojunsul"><img src="https://avatars.githubusercontent.com/mojunsul" width="150px;" alt="oneul0"></a></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/mojunsul"><b>서동균</b></a></td>
