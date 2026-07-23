@@ -375,16 +375,17 @@ def build_code_template(
 ) -> str:
     if language == "java":
         return (
-            "import java.io.*;\n"
-            "import java.util.*;\n\n"
-            "class Main {\n"
-            "    public static void main(String[] args) "
-            "throws Exception {\n"
-            "        BufferedReader br = new BufferedReader(\n"
-            "            new InputStreamReader(System.in)\n"
-            "        );\n"
-            "    }\n"
-            "}\n"
+            ""
+            # "import java.io.*;\n"
+            # "import java.util.*;\n\n"
+            # "class Main {\n"
+            # "    public static void main(String[] args) "
+            # "throws Exception {\n"
+            # "        BufferedReader br = new BufferedReader(\n"
+            # "            new InputStreamReader(System.in)\n"
+            # "        );\n"
+            # "    }\n"
+            # "}\n"
         )
 
     if language == "swift":
