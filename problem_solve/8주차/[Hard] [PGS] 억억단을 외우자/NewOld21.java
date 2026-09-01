@@ -12,8 +12,12 @@ class Solution {
             }
         }
         
+        // starts[i] == idx일 때 최대 약수를 갖은 e저장
         int[] factor = new int[e+1];
         factor[e] = e;
+
+        // 뒤에서 부터 앞으로 
+        // starts[i] ~ e
         for(int j=e-1; j>0; j--) {
 
             if (cnt[j] >= cnt[factor[j+1]]) {
@@ -29,3 +33,6 @@ class Solution {
         return answer;
     }
 }
+
+// 시간복잡도
+// O(nlogn)
