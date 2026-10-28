@@ -13,11 +13,11 @@ class Solution {
     static int[][] map;
     static boolean[][] visited;
 
-    // 상 하 좌 우
+
     static int[] dx = {-1, 1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
 
-    // 터널 종류별 이동 가능한 방향
+
     static int[][] tunnel = {
         {},
         {0, 1, 2, 3}, // 1번 : 상하좌우
@@ -78,35 +78,31 @@ class Solution {
 
             Node node = q.poll();
 
-            // 제한 시간이 되면 더 이상 이동하지 않음
+
             if (node.time >= L) {
                 continue;
             }
 
             int type = map[node.x][node.y];
 
-            // 현재 터널에서 이동할 수 있는 방향 탐색
+
             for (int dir : tunnel[type]) {
 
                 int nx = node.x + dx[dir];
                 int ny = node.y + dy[dir];
 
-                // 범위 검사
                 if (nx < 0 || nx >= N || ny < 0 || ny >= M) {
                     continue;
                 }
-
-                // 이미 방문한 위치
+        
                 if (visited[nx][ny]) {
                     continue;
                 }
 
-                // 터널이 없는 위치
                 if (map[nx][ny] == 0) {
                     continue;
                 }
 
-                // 현재 방향의 반대 방향
                 int reverse;
 
                 if (dir == 0) reverse = 1;
@@ -114,7 +110,6 @@ class Solution {
                 else if (dir == 2) reverse = 3;
                 else reverse = 2;
 
-                // 다음 터널이 연결되어 있는지 확인
                 boolean connect = false;
 
                 for (int nextDir : tunnel[map[nx][ny]]) {
